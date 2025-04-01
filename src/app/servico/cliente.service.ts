@@ -24,4 +24,9 @@ export class ClienteService {
   cadastrar(cliente:Cliente):Observable<Cliente>{
     return this.http.post<Cliente>(this.url, cliente);
   }
+
+  //metodo para editar clientes
+  editar(cliente:Cliente):Observable<Cliente>{
+    return this.http.put<Cliente>(this.url, cliente);
+  }
 }

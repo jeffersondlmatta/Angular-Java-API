@@ -21,6 +21,9 @@ export class PrincipalComponent implements OnInit {
   btnCadastro: boolean = true;
   clientes: Cliente[] = [];
 
+  //visibilidade da tabela
+  tabela:boolean = true;
+
   constructor(private servico: ClienteService) { }
 
   selecionar(): void {
@@ -31,10 +34,50 @@ export class PrincipalComponent implements OnInit {
   cadastrar(): void {
     this.servico.cadastrar(this.cliente)
       .subscribe(retorno => {
+
+        //cadastra cliente no vetor
         this.clientes.push(retorno);
-        //this.cliente = new Cliente();
+
+        //limpa o formulario
+        this.cliente = new Cliente();
+
+        alert("cliente cadastrado com sucesso");
       });
   }
+
+  //seleciona um
+  selecionarCliente(posicao:number): void {
+
+    //selecionar cliente no vetor
+    this.cliente = this.clientes[posicao];
+
+    //visibilidade dos botoes
+    this.btnCadastro = false;
+    this.tabela = false;
+  }
+
+  //editar cliente
+  editar(): void {
+    this.servico.editar(this.cliente)
+      .subscribe(retorno => {
+
+        //obtem posicao do vetor
+        let posicao = this.clientes.findIndex(cliente =>{
+          return cliente.codigo  == retorno.codigo;
+        })
+        //alterar os dados no vetor
+        this.clientes[posicao] = retorno;
+
+        //limpa form
+        this.cliente = new Cliente();
+
+        //visibilidade dos btns
+        this.btnCadastro = true;
+        this.tabela = true;
+        alert("cliente editado com sucesso");
+      });
+  }
+
 
   ngOnInit(): void {
     this.selecionar();
