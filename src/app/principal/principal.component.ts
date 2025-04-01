@@ -78,6 +78,37 @@ export class PrincipalComponent implements OnInit {
       });
   }
 
+  //remover
+  remover():void {
+    this.servico.remover(this.cliente.codigo)
+      .subscribe(retorno => {
+
+        //obtem posicao do vetor
+        let posicao = this.clientes.findIndex(cliente =>{
+          return cliente.codigo  == this.cliente.codigo;
+        })
+
+        //remover cliente do votor
+        this.clientes.splice(posicao, 1);
+
+        //limpa form
+        this.cliente = new Cliente();
+
+        //visibilidade dos btns
+        this.btnCadastro = true;
+        this.tabela = true;
+        alert("cliente removido com sucesso");
+      });
+  }
+
+  //cancelar
+  cancelar():void {
+    this.cliente = new Cliente();
+    this.btnCadastro = true;
+    this.tabela = true;
+  }
+
+
 
   ngOnInit(): void {
     this.selecionar();

@@ -6,10 +6,10 @@
   <input type="number" placeholder="Idade" class="form-control"name="idade" [(ngModel)]="cliente.idade">
   <input type="text" placeholder="Cidade" class="form-control" name="cidade" [(ngModel)]="cliente.cidade">
 
-  @if (btnCadastro) {<button (click)="cadastrar()" class="btn btn-primary">Cadastrar</button>}
-  @if (!btnCadastro) {<button (click)="editar()" class="btn btn-warning">Alterar</button>}
-  @if (!btnCadastro) {<button class="btn btn-danger">Remover</button>}
-  @if (!btnCadastro) { <button class="btn btn-secondary">Cancelar</button>}
+  @if (btnCadastro) {<button   (click)="cadastrar()" class="btn btn-primary">Cadastrar</button>}
+  @if (!btnCadastro) {<button  (click)="editar()"    class="btn btn-warning">Alterar</button>}
+  @if (!btnCadastro) {<button  (click)="remover()"   class="btn btn-danger">Remover</button>}
+  @if (!btnCadastro) { <button (click)="cancelar()"  class="btn btn-secondary">Cancelar</button>}
 
 
 </form>
