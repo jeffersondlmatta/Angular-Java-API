@@ -2,17 +2,18 @@
 <form>
   <img src="assets/cliente.png">
 
-  <input type="text" placeholder="Nome" class="form-control">
-  <input type="number" placeholder="Idade" class="form-control">
-  <input type="text" placeholder="Cidade" class="form-control">
+  <input type="text" placeholder="Nome" class="form-control" name="nome"  [(ngModel)]="cliente.nome">
+  <input type="number" placeholder="Idade" class="form-control"name="idade" [(ngModel)]="cliente.idade">
+  <input type="text" placeholder="Cidade" class="form-control" name="cidade" [(ngModel)]="cliente.cidade">
 
-  @if (btnCadastro) {<button class="btn btn-primary">Cadastrar</button>}
+  @if (btnCadastro) {<button (click)="cadastrar()" class="btn btn-primary">Cadastrar</button>}
   @if (!btnCadastro) {<button class="btn btn-warning">Alterar</button>}
   @if (!btnCadastro) {<button class="btn btn-danger">Remover</button>}
   @if (!btnCadastro) { <button class="btn btn-secondary">Cancelar</button>}
 
 
 </form>
+
 <table class="table">
   <thead>
     <tr>
@@ -24,6 +25,13 @@
     </tr>
   </thead>
   <tbody>
+    <tr *ngFor="let cliente of clientes; index as i">
+      <td>{{i+1}}</td>
+      <td>{{cliente.nome}}</td>
+      <td>{{cliente.idade}}</td>
+      <td>{{cliente.cidade}}</td>
+      <td><button class="btn btn-success">Selecionar</button></td>
+    </tr>
 
   </tbody>
 </table>
