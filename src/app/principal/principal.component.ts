@@ -63,7 +63,7 @@ export class PrincipalComponent implements OnInit {
 
         //obtem posicao do vetor
         let posicao = this.clientes.findIndex(cliente =>{
-          return cliente.codigo  == retorno.codigo;
+          return cliente.id  == retorno.id;
         })
         //alterar os dados no vetor
         this.clientes[posicao] = retorno;
@@ -80,12 +80,12 @@ export class PrincipalComponent implements OnInit {
 
   //remover
   remover():void {
-    this.servico.remover(this.cliente.codigo)
-      .subscribe(retorno => {
+    this.servico.remover(this.cliente.id)
+      .subscribe( retorno => {
 
         //obtem posicao do vetor
         let posicao = this.clientes.findIndex(cliente =>{
-          return cliente.codigo  == this.cliente.codigo;
+          return cliente.id  === this.cliente.id;
         })
 
         //remover cliente do votor
