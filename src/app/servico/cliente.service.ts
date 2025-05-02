@@ -17,21 +17,21 @@ export class ClienteService {
 
   //metodo para selecionar todos os clientes
   selecionar():Observable<Cliente[]>{
-    return this.http.get<Cliente[]>(this.url);
+    return this.http.get<Cliente[]>(this.url + "/listar");
   }
 
   //metodo para cadastrar clientes
   cadastrar(cliente:Cliente):Observable<Cliente>{
-    return this.http.post<Cliente>(this.url, cliente);
+    return this.http.post<Cliente>(this.url + "/cadastrar", cliente);
   }
 
   //metodo para editar clientes
   editar(cliente:Cliente):Observable<Cliente>{
-    return this.http.put<Cliente>(this.url, cliente);
+    return this.http.put<Cliente>(this.url + "/editar", cliente);
   }
 
   //remove cliente
-  remover(codigo:number):Observable<void>{
-    return this.http.delete<void>(this.url + '/' + codigo);
+  remover(id:number):Observable<void>{
+    return this.http.delete<void>(this.url + "/deletar/" + id);
   }
 }
